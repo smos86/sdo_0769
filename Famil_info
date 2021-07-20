@@ -1,0 +1,76 @@
+<?php
+class Person
+{
+private $name;
+private $lastname;
+private $age;
+private $mother;
+private $father;
+// Дедушки и бабушки:
+private $mothermom;
+private $fathermom;
+private $motherdad;
+private $fatherdad;
+
+function __construct($name,$lastname,$age,$mother=null,$father=null,$mothermom=null,$fathermom=null,$motherdad=null,$fatherdad=null)
+{
+$this->name = $name;
+$this->lastname = $lastname;
+$this->age = $age;
+$this->mother = $mother;
+$this->father = $father;
+// Дедушки и бабушки:
+$this->mothermom = $mothermom;
+$this->fathermom = $fathermom;
+$this->motherdad = $motherdad;
+$this->fatherdad = $fatherdad;
+}
+
+function getAge() {
+return $this->age;
+}
+function getName() {
+return $this->name;
+}
+function getLastname() {
+return $this->lastname;
+}
+function getMother() {
+return $this->mother;
+}
+function getFather() {
+return $this->father;
+}
+// Функции дедушек и бабушек:
+function getMothermom() {
+return $this->mothermom;
+}
+function getFathermom() {
+return $this->fathermom;
+}
+function getMotherdad() {
+return $this->motherdad;
+}
+function getMFatherdad() {
+return $this->fatherdad;
+}
+// Функция общей информации:
+function getInfo() {
+return "
+<h3>Несколько слов о моей семье</h3><br>"."Моё имя: ".$this->getName().", мне: ".$this->getAge()." лет"."<br>Моя фамилия: ".$this->getLastname()."<br>Мою маму зовут: ".$this->getMother()->getName()."<br>
+Моего папу зовут: ".$this->getFather()->getName()."<br>Мою бабушку по маме зовут: ".$this->getMothermom()->getName().", ей: ".$this->getMothermom()->getAge()." лет"
+."<br>Моего дедушку по маме зовут: ".$this->getFathermom()->getName().", его фамилия: ".$this->getFathermom()->getLastname().", ему: ".$this->getFathermom()->getAge()." лет"
+."<br>Мою бабушку по папе зовут: ".$this->getMotherdad()->getName().", ей: ".$this->getMotherdad()->getAge()." год"
+."<br>Моего дедушку по папе зовут: ".$this->getMFatherdad()->getName().", его фамилия: ".$this->getMFatherdad()->getLastname().", ему: ".$this->getMFatherdad()->getAge()." лет";
+}
+}
+
+$Ivan = new Person("Иван", "Петров", 75);
+$Irina = new Person("Ирина", "Петрова", 71);
+$Oleg = new Person("Олег", "Иванов", 70);
+$Helen = new Person("Елена", "Иванова", 68);
+$alex = new Person("Алексей","Петров",42);
+$olga = new Person("Ольга","Петрова",42);
+$valera = new Person("Валера","Петров",15,$olga,$alex,$Helen,$Oleg,$Irina,$Ivan);
+
+echo $valera->getInfo();
